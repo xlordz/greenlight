@@ -95,7 +95,8 @@ func AllRules() []Rule {
 			fix:       "Implement ATT prompt before any tracking. Add NSUserTrackingUsageDescription to Info.plist.",
 			languages: []string{"swift", "objc", "typescript", "javascript"},
 			patterns: []*regexp.Regexp{
-				regexp.MustCompile(`(?i)(firebase.*analytics|google.*analytics|facebook.*sdk|fbsdk|adjust.*sdk|appsflyer|amplitude|mixpanel)`),
+				regexp.MustCompile(`(?i)(firebase.*analytics|google.*analytics|facebook.*sdk|fbsdk|adjust.*sdk|appsflyer|mixpanel)`),
+			regexp.MustCompile(`(?i)(import\s+Amplitude|AmplitudeSwift|amplitude\.init|Amplitude\.instance|amplitude-js|@amplitude/)`),
 				regexp.MustCompile(`(?i)(import.*@segment/|analytics-react-native|SegmentAnalytics|createClient.*writeKey)`),
 			},
 			antiPatterns: []*regexp.Regexp{
@@ -182,6 +183,9 @@ func AllRules() []Rule {
 				regexp.MustCompile("(?i)`[^`]*\\b(lorem ipsum|placeholder|coming soon|under construction|todo|tbd)\\b[^`]*`"),
 				regexp.MustCompile(`(?i)\b(lorem ipsum|placeholder|coming soon|under construction|todo|tbd)\b`), // bare text (JSX content)
 			},
+			ignorePatterns: []*regexp.Regexp{
+				regexp.MustCompile(`(?i)(func\s+placeholder\s*\(|\.placeholder\s*[:=]|placeholder\s*[:=]\s*[A-Z]|placeholder\s*\(in\s*context)`), // Swift/WidgetKit protocol methods and property assignments
+			},
 		},
 		&PatternRule{
 			id:        "console-log",
@@ -225,6 +229,7 @@ func AllRules() []Rule {
 			},
 			ignorePatterns: []*regexp.Regexp{
 				regexp.MustCompile(`(?i)(localhost|127\.0\.0\.1|0\.0\.0\.0|http://example)`),
+				regexp.MustCompile(`(?i)(w3\.org|xmlns|DTD|doctype)`), // XML/SVG namespace URIs and DTD references are identifiers, not network requests
 			},
 		},
 		&PatternRule{

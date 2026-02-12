@@ -103,7 +103,7 @@ var trackingSDKPatterns = []struct {
 	{regexp.MustCompile(`(?i)(fbsdk|facebook.*sdk)`), "Facebook SDK"},
 	{regexp.MustCompile(`(?i)adjust.*sdk`), "Adjust SDK"},
 	{regexp.MustCompile(`(?i)appsflyer`), "AppsFlyer"},
-	{regexp.MustCompile(`(?i)(amplitude)`), "Amplitude"},
+	{regexp.MustCompile(`(?i)(import\s+Amplitude|AmplitudeSwift|amplitude\.init|Amplitude\.instance|amplitude-js|@amplitude/)`), "Amplitude"},
 	{regexp.MustCompile(`(?i)(mixpanel)`), "Mixpanel"},
 	{regexp.MustCompile(`(?i)(@segment/|analytics-react-native)`), "Segment"},
 	{regexp.MustCompile(`(?i)(branch\.io|react-native-branch)`), "Branch"},
