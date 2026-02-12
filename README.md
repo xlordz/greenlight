@@ -161,6 +161,23 @@ Claude will:
 3. Fix each issue (CRITICAL first, then WARN, then INFO)
 4. Re-run and repeat until GREENLIT
 
+## Codex Skill
+
+Greenlight includes a Codex-native skill package at `codex-skill/`.
+
+### Setup
+
+```bash
+mkdir -p ~/.codex/skills/app-store-preflight-compliance
+cp -R codex-skill/* ~/.codex/skills/app-store-preflight-compliance/
+```
+
+Then in Codex, invoke:
+
+```text
+Use $app-store-preflight-compliance to run Greenlight preflight and fix all findings until GREENLIT.
+```
+
 ## Architecture
 
 ```
